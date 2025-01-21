@@ -1,6 +1,18 @@
+:root {
+    --background-color: #000;
+    --text-color: #fff;
+    --heading-color: #00bcd4;
+    --button-border-color: #00bcd4;
+    --button-hover-bg: #00bcd4;
+    --button-hover-text: #000;
+    --status-color: #ff5722;
+    --card-bg-color: #222;
+    --icon-color: #00bcd4;
+}
+
 body {
-    background-color: #000;
-    color: #fff;
+    background-color: var(--background-color);
+    color: var(--text-color);
     font-family: Arial, sans-serif;
     display: flex;
     flex-direction: column;
@@ -8,37 +20,51 @@ body {
     margin: 0;
     padding: 20px;
 }
-
-h1, h2 {
-    color: #00bcd4;
+.container {
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center; /* Text zentrieren */
+    width: 90%;
+    max-width: 800px;
 }
+h1, h2 {
+    color: var(--heading-color);
+}
+h1{
+font-size: 3rem;}
+
+
 
 input, button {
     margin: 5px;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #00bcd4;
-    border-radius: 5px;
-    background-color: #000;
-    color: #fff;
+    border: 1px solid var(--button-border-color);
+    border-radius: 20px;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
+
 #plz-eingabe {
-   
     max-width: 100px;
 }
+
 button {
     cursor: pointer;
+
 }
 
 button:hover {
-    background-color: #00bcd4;
-    color: #000;
+    background-color: var(--button-hover-bg);
+    color: var(--button-hover-text);
 }
 
 #status {
     margin: 10px 0;
     font-size: 18px;
-    color: #ff5722;
+    color: var(--status-color);
 }
 
 #grundlegende-info, #aktuelle-daten, #stunden-daten, #tage-daten {
@@ -50,13 +76,14 @@ button:hover {
 #stunden-container div, #tage-container div {
     margin: 10px 0;
     padding: 10px;
-    border: 1px solid #fff;
+    border: 1px solid var(--text-color);
     border-radius: 5px;
-    background-color: #222;
+    background-color: var(--card-bg-color);
 }
+
 .material-icons {
     font-size: 48px;
     vertical-align: middle;
-    color: #00bcd4;
+    color: var(--icon-color);
     margin-left: 10px;
 }
