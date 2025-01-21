@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wetterdaten</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Wetterdaten</h1>
+    <div id="wetter-container">
+        <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
+        <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+        <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
+        <button id="suchen">Suchen</button>
+        <p id="status" class="laden">Gib zuerst den Ort an</p>
+    </div>
+    <div id="grundlegende-info">
+        <h2>Grundlegende Informationen</h2>
+        <p id="koordinaten"></p>
+        <p id="zeitzone"></p>
+        <p id="hoehe"></p>
+    </div>
+    <div id="aktuelle-daten">
+        <h2>Aktuelle Wetterdaten</h2>
+        <div id="icon-container"></div>
+        <p id="zusammenfassung"></p>
+        <p id="temperatur"></p>
+        <p id="gefuehlte-temperatur"></p>
+        <p id="luftfeuchtigkeit"></p>
+        <p id="luftdruck"></p>
+        <p id="windgeschwindigkeit"></p>
+        <p id="uv-index"></p>
+        <p id="wolkendecke"></p>
+    </div>
+    <div id="stunden-daten">
+        <h2>Stündliche Vorhersage</h2>
+        <div id="stunden-container"></div>
+    </div>
+    <div id="tage-daten">
+        <h2>Tägliche Vorhersage</h2>
+        <div id="tage-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
