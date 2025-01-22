@@ -273,3 +273,90 @@ button:hover {
 #grundlegende-info {
     display: none;
 }
+
+/* Media Queries für kleinere Geräte */
+
+/* Für Geräte mit einer Breite von bis zu 768px (Tablets und kleinere Bildschirme) */
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2.5rem; /* Etwas kleinere Überschrift */
+    }
+
+    #temp-card {
+        flex-direction: column; /* Stapeln der Elemente */
+        text-align: center;
+    }
+
+    #temperatur {
+        font-size: 4rem; /* Kleinere Schriftgröße */
+    }
+
+    .material-icons {
+        font-size: 80px; /* Kleinere Icons */
+    }
+
+    .wrapper {
+        width: 100%; /* Breite anpassen */
+        height: auto; /* Automatische Höhe */
+    }
+
+    .inner {
+        --w: 120px;
+        --h: 100px;
+        --translateZ: calc((var(--w) + var(--h)) * 0.75); /* Abstand anpassen */
+    }
+}
+
+/* Für Geräte mit einer Breite von bis zu 480px (Smartphones und sehr kleine Bildschirme) */
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    h1 {
+        font-size: 2rem; /* Noch kleinere Überschrift */
+    }
+
+    h2 {
+        font-size: 1.5rem; /* Auch kleinere Unterüberschrift */
+    }
+
+    #temp-card {
+        padding: 15px;
+    }
+
+    #temperatur {
+        font-size: 3rem; /* Schriftgröße weiter verkleinern */
+    }
+
+    .material-icons {
+        font-size: 60px; /* Kleinere Icons */
+    }
+
+    input,
+    button {
+        font-size: 14px; /* Kleinere Schriftgröße */
+        padding: 8px;
+    }
+
+    .wrapper {
+        width: 100%; /* Komplett responsive */
+        height: auto;
+    }
+
+    .inner {
+        --w: 100px;
+        --h: 80px;
+        --translateZ: calc((var(--w) + var(--h)) * 0.75); /* Abstand erneut anpassen */
+    }
+
+    #map {
+        width: 100%;
+        height: 200px;
+    }
+}

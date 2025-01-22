@@ -171,4 +171,3 @@ function initMap(lat, lon) {
         .bindPopup('Gewählter Ort')
         .openPopup();
 }
-
