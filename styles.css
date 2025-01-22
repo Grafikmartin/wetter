@@ -5,7 +5,7 @@
     --button-border-color: #00bcd4;
     --button-hover-bg: #00bcd4;
     --button-hover-text: #000;
-    --status-color: #ff5722;
+    --status-color: #00bcd4;
     --card-bg-color: rgba(255, 255, 255, 0.1);
     --icon-color: #00bcd4;
 }
@@ -40,7 +40,17 @@ h2 {
 h1 {
     font-size: 3rem;
 }
+.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
 
+/* Stil für sichtbare Abschnitte */
+.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
 
 input,
@@ -50,11 +60,12 @@ button {
     font-size: 16px;
     border: 1px solid var(--button-border-color);
     border-radius: 20px;
-    background-color: var(--background-color);
+    background-color: black;
     color: var(--text-color);
     margin-bottom: 20px;
+    text-align: center;
+    
 }
-
 #plz-eingabe {
     max-width: 100px;
 }
@@ -68,7 +79,20 @@ button:hover {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
 }
+.laden {
+    animation: blinken 1.5s infinite; /* Blinkanimation */
+    color: var(--status-color);
+}
 
+/* Blinkanimation */
+@keyframes blinken {
+    0%, 100% {
+        opacity: 1; /* Volle Sichtbarkeit */
+    }
+    50% {
+        opacity: 0.5; /* Halbtransparent */
+    }
+}
 #status {
     margin: 10px 0;
     font-size: 18px;
@@ -108,7 +132,7 @@ button:hover {
 
 
 .material-icons {
-    font-size: 130px;
+    font-size: 110px;
     vertical-align: middle;
     color: var(--icon-color);
     margin-left: 10px;
@@ -209,6 +233,7 @@ button:hover {
 
 /* Kartencontainer */
 #map-container {
+    display: none;
     margin-top: -40px;
     text-align: center;
 }

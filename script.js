@@ -20,12 +20,15 @@ document.getElementById("suchen").addEventListener("click", async () => {
 
         zeigeGrundlegendeInfo(wetterDaten);
         zeigeAktuelleDaten(wetterDaten);
-        // Weitere Funktionen zum Anzeigen von Daten hier aufrufen
 
         // Abschnitte sichtbar machen
         document.getElementById("aktuelle-daten").style.display = "block";
         document.querySelector(".wrapper").style.display = "flex";
         document.getElementById("grundlegende-info").style.display = "block";
+
+        // Map-Container sichtbar machen
+        const mapContainer = document.getElementById("map-container");
+        mapContainer.style.display = "block";
 
         // Karte aktualisieren
         initMap(koords.lat, koords.lon);
@@ -35,6 +38,7 @@ document.getElementById("suchen").addEventListener("click", async () => {
         status.textContent = `Fehler: ${error.message}`;
     }
 });
+
 
 /*
 function zeigeTageDaten(daten) {
@@ -104,7 +108,7 @@ function zeigeAktuelleDaten(daten) {
     if (!aktuell) return;
 
     // Temperatur mit 2 Grad Abzug und auf ganze Zahl gerundet
-    const temperaturCelsius = Math.round((aktuell.temperature - 32) * 5 / 9);
+    const temperaturCelsius = Math.round((aktuell.temperature - 32) * 5 / 9 - 3.5);
 
     // Gefühlte Temperatur mit 2 Grad Abzug und auf ganze Zahl gerundet
     const gefuehlteTemperaturCelsius = Math.round((aktuell.apparentTemperature - 32) * 5 / 9 );
