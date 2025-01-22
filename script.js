@@ -23,11 +23,15 @@ document.getElementById("suchen").addEventListener("click", async () => {
         zeigeStundenDaten(wetterDaten);
         zeigeTageDaten(wetterDaten);
 
+        // Karte aktualisieren
+        initMap(koords.lat, koords.lon);
+
         status.textContent = "";
     } catch (error) {
         status.textContent = `Fehler: ${error.message}`;
     }
 });
+
 function zeigeTageDaten(daten) {
     const container = document.getElementById("tage-container");
     container.innerHTML = ""; // Vorherige Inhalte löschen
@@ -127,3 +131,26 @@ function zeigeWetterIcon(zustand) {
     const iconName = iconMap[zustand] || "help"; // Fallback-Icon
     return `<span class="material-icons">${iconName}</span>`;
 }
+// Funktion zur Anzeige der Karte
+let map; // Globale Variable für die Karte
+
+function initMap(lat, lon) {
+    if (!map) {
+        // Karte erstmalig erstellen
+        map = L.map('map').setView([lat, lon], 10);
+
+        // OpenStreetMap-Tiles hinzufügen
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+    } else {
+        // Karte auf neue Koordinaten zentrieren
+        map.setView([lat, lon], 10);
+    }
+
+    // Marker setzen
+    L.marker([lat, lon]).addTo(map)
+        .bindPopup('Gewählter Ort')
+        .openPopup();
+}
+

@@ -6,6 +6,8 @@
     <title>Wetterdaten</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 </head>
 <body>
     <section class="container">
@@ -17,12 +19,17 @@
             <button id="suchen">Suchen</button>
             <p id="status" class="laden">Gib einen Ort von diesem Planeten an</p>
         </div>
+        <div id="map-container">
+            <h2>Ort auf der Karte</h2>
+            <div id="map"></div>
+        </div>
         <div id="grundlegende-info">
             <h2>Grundlegende Informationen</h2>
             <p id="koordinaten"></p>
             <p id="zeitzone"></p>
             <p id="hoehe"></p>
         </div>
+        
         <div id="aktuelle-daten">
             <h2>Aktuelle Wetterdaten</h2>
             <div id="icon-container"></div>
@@ -43,9 +50,6 @@
             <h2>Tägliche Vorhersage</h2>
             <div id="tage-container"></div>
         </div>
-    
-
-
     </section>
     
     <script src="script.js"></script>
