@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <link rel="icon" type="image/png" href="assets/wetter.png">
 </head>
 <body>
     <section class="container">
@@ -19,9 +20,43 @@
             <button id="suchen">Suchen</button>
             <p id="status" class="laden">Gib einen Ort von diesem Planeten an</p>
         </div>
+        <div id="aktuelle-daten">
+            <h2>Aktuelle Wetterdaten</h2>
+            <div id="temp-card">
+                <span id="temperatur"></span>
+                <span id="zusammenfassung"></span>
+            </div>
+            
+        </div>
+        <div class="wrapper">
+            <div class="inner" style="--quantity: 6;">
+                <div class="card" style="--index: 0;">
+                    <div class="Wetterdaten" id="karte-gefuehlte-temperatur">Gefühlte Temperatur:<br> xx °C</div>
+                </div>
+                <div class="card" style="--index: 1;">
+                    <div class="Wetterdaten" id="karte-luftfeuchtigkeit">Luftfeuchtigkeit:<br>xx%</div>
+                </div>
+                <div class="card" style="--index: 2;">
+                    <div class="Wetterdaten" id="karte-luftdruck">Luftdruck: <br> xx hPa</div>
+                </div>
+                <div class="card" style="--index: 3;">
+                    <div class="Wetterdaten" id="karte-windgeschwindigkeit">Windgeschwindigkeit:<br> xx m/s</div>
+                </div>
+                <div class="card" style="--index: 4;">
+                    <div class="Wetterdaten" id="karte-uv-index">UV-Index:<br> xx</div>
+                </div>
+                <div class="card" style="--index: 5;">
+                    <div class="Wetterdaten" id="karte-wolkendecke">Wolkendecke:<br> xx%</div>
+                </div>
+            </div>
+        </div>
+        
         <div id="map-container">
-            <h2>Ort auf der Karte</h2>
-            <div id="map"></div>
+            
+            <div id="map-placeholder">
+                <img src="assets/globus.webp" alt="Globus" id="map-image" />
+            </div>
+            <div id="map" style="display: none;"></div>
         </div>
         <div id="grundlegende-info">
             <h2>Grundlegende Informationen</h2>
@@ -30,18 +65,7 @@
             <p id="hoehe"></p>
         </div>
         
-        <div id="aktuelle-daten">
-            <h2>Aktuelle Wetterdaten</h2>
-            <div id="icon-container"></div>
-            <p id="zusammenfassung"></p>
-            <p id="temperatur"></p>
-            <p id="gefuehlte-temperatur"></p>
-            <p id="luftfeuchtigkeit"></p>
-            <p id="luftdruck"></p>
-            <p id="windgeschwindigkeit"></p>
-            <p id="uv-index"></p>
-            <p id="wolkendecke"></p>
-        </div>
+        <!--
         <div id="stunden-daten">
             <h2>Stündliche Vorhersage</h2>
             <div id="stunden-container"></div>
@@ -49,7 +73,7 @@
         <div id="tage-daten">
             <h2>Tägliche Vorhersage</h2>
             <div id="tage-container"></div>
-        </div>
+        </div>-->
     </section>
     
     <script src="script.js"></script>

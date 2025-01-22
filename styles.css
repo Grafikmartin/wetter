@@ -6,7 +6,7 @@
     --button-hover-bg: #00bcd4;
     --button-hover-text: #000;
     --status-color: #ff5722;
-    --card-bg-color: #222;
+    --card-bg-color: rgba(255, 255, 255, 0.1);
     --icon-color: #00bcd4;
 }
 
@@ -20,24 +20,31 @@ body {
     margin: 0;
     padding: 20px;
 }
+
 .container {
     width: 500px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center; /* Text zentrieren */
+    text-align: center;
+    /* Text zentrieren */
     width: 90%;
     max-width: 800px;
 }
-h1, h2 {
+
+h1,
+h2 {
     color: var(--heading-color);
 }
-h1{
-font-size: 3rem;}
+
+h1 {
+    font-size: 3rem;
+}
 
 
 
-input, button {
+input,
+button {
     margin: 5px;
     padding: 10px;
     font-size: 16px;
@@ -45,6 +52,7 @@ input, button {
     border-radius: 20px;
     background-color: var(--background-color);
     color: var(--text-color);
+    margin-bottom: 20px;
 }
 
 #plz-eingabe {
@@ -67,13 +75,48 @@ button:hover {
     color: var(--status-color);
 }
 
-#grundlegende-info, #aktuelle-daten, #stunden-daten, #tage-daten {
+#grundlegende-info,
+#aktuelle-daten,
+#stunden-daten,
+#tage-daten {
     margin-top: 20px;
     width: 80%;
-    max-width: 600px;
+    max-width: 500px;
 }
 
-#stunden-container div, #tage-container div {
+/* Container für die Temperatur-Card */
+#temp-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg-color);
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 10px 0;
+    width: auto;
+    border: 1px solid var(--button-border-color);
+}
+
+/* Temperaturstil */
+#temperatur {
+    font-size: 6rem;
+    color: var(--text-color);
+    margin-right: 10px;
+    /* Abstand zwischen Temperatur und Icon */
+}
+
+
+.material-icons {
+    font-size: 130px;
+    vertical-align: middle;
+    color: var(--icon-color);
+    margin-left: 10px;
+}
+
+
+#stunden-container div,
+#tage-container div {
     margin: 10px 0;
     padding: 10px;
     border: 1px solid var(--text-color);
@@ -81,23 +124,127 @@ button:hover {
     background-color: var(--card-bg-color);
 }
 
-.material-icons {
-    font-size: 48px;
-    vertical-align: middle;
-    color: var(--icon-color);
-    margin-left: 10px;
+
+/* karussel */
+
+
+.wrapper {
+    width: 600px;
+    height: 220px;
+    position: relative;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
 }
+
+.inner {
+    --w: 180px;
+    --h: 150px;
+    --translateZ: calc((var(--w) + var(--h)) * 0.75);
+    /* Abstand der Karten vom Zentrum */
+    --rotateX: -9deg;
+    --perspective: 800px;
+    position: absolute;
+    width: var(--w);
+    height: var(--h);
+    transform-style: preserve-3d;
+    animation: rotating 15s linear infinite;
+}
+
+@keyframes rotating {
+    from {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(360deg);
+    }
+
+    to {
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+    }
+}
+
+.card {
+    position: absolute;
+    width: 180px;
+    /* Feste Breite */
+    height: 50px;
+    /* Feste Höhe */
+    border-radius: 12px;
+    overflow: hidden;
+    inset: 0;
+    transform: rotateY(calc(360deg / var(--quantity) * var(--index))) translateZ(var(--translateZ));
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--button-border-color);
+    background: var(--card-bg-color);
+}
+
+/* Karte individuell ansprechbar */
+.card:nth-child(1) {}
+
+.card:nth-child(2) {}
+
+.card:nth-child(3) {}
+
+.card:nth-child(4) {}
+
+.card:nth-child(5) {}
+
+.card:nth-child(6) {}
+
+.Wetterdaten {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 0.8rem;
+    /* Schriftgröße */
+    font-weight: bold;
+    color: var(--text-color);
+    /* Weißer Text */
+    border-radius: 15px;
+    padding: 10px;
+}
+
+
+
 /* Kartencontainer */
 #map-container {
-    margin-top: 20px;
+    margin-top: -40px;
     text-align: center;
 }
 
-#map {
+/* Platzhalter-Bild */
+#map-placeholder {
     width: 300px;
     height: 300px;
     margin: 0 auto;
-    border: 2px solid var(--text-color);
-    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+}
+
+#map-image {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 15px;
+}
+
+/* Karte */
+#map {
+    width: 500px;
+    height: 300px;
+    margin: 0 auto;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: 3px solid var(--button-border-color);
+}
+
+#aktuelle-daten,
+.wrapper,
+#grundlegende-info {
+    display: none;
 }

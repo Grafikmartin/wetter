@@ -20,8 +20,12 @@ document.getElementById("suchen").addEventListener("click", async () => {
 
         zeigeGrundlegendeInfo(wetterDaten);
         zeigeAktuelleDaten(wetterDaten);
-        zeigeStundenDaten(wetterDaten);
-        zeigeTageDaten(wetterDaten);
+        // Weitere Funktionen zum Anzeigen von Daten hier aufrufen
+
+        // Abschnitte sichtbar machen
+        document.getElementById("aktuelle-daten").style.display = "block";
+        document.querySelector(".wrapper").style.display = "flex";
+        document.getElementById("grundlegende-info").style.display = "block";
 
         // Karte aktualisieren
         initMap(koords.lat, koords.lon);
@@ -32,6 +36,7 @@ document.getElementById("suchen").addEventListener("click", async () => {
     }
 });
 
+/*
 function zeigeTageDaten(daten) {
     const container = document.getElementById("tage-container");
     container.innerHTML = ""; // Vorherige Inhalte löschen
@@ -49,7 +54,7 @@ function zeigeTageDaten(daten) {
             </div>
         `;
     });
-}
+}*/
 
 async function holeKoordinaten(stadt, plz, land) {
     const params = new URLSearchParams({ city: stadt, format: "json", limit: 1 });
@@ -77,7 +82,7 @@ function zeigeGrundlegendeInfo(daten) {
     document.getElementById("hoehe").textContent = `Höhe: ${daten.elevation} Meter`;
 }
 
-
+/*
 function zeigeStundenDaten(daten) {
     const container = document.getElementById("stunden-container");
     container.innerHTML = "";
@@ -93,26 +98,29 @@ function zeigeStundenDaten(daten) {
             </div>
         `;
     });
-}
+}*/
 function zeigeAktuelleDaten(daten) {
     const aktuell = daten.currently;
     if (!aktuell) return;
 
-    // Wetter-Icon und Zusammenfassung
-    document.getElementById("zusammenfassung").innerHTML = `
-        Zusammenfassung: ${aktuell.summary} 
-        ${zeigeWetterIcon(aktuell.icon)}
-    `;
+    // Temperatur mit 2 Grad Abzug und auf ganze Zahl gerundet
+    const temperaturCelsius = Math.round((aktuell.temperature - 32) * 5 / 9);
 
-    // Weitere Wetterdetails
-    document.getElementById("temperatur").textContent = `Temperatur: ${((aktuell.temperature - 32) * 5 / 9).toFixed(2)} °C`;
-    document.getElementById("gefuehlte-temperatur").textContent = `Gefühlte Temperatur: ${((aktuell.apparentTemperature - 32) * 5 / 9).toFixed(2)} °C`;
-    document.getElementById("luftfeuchtigkeit").textContent = `Luftfeuchtigkeit: ${(aktuell.humidity * 100).toFixed(2)}%`;
-    document.getElementById("luftdruck").textContent = `Luftdruck: ${aktuell.pressure} hPa`;
-    document.getElementById("windgeschwindigkeit").textContent = `Windgeschwindigkeit: ${aktuell.windSpeed} m/s`;
-    document.getElementById("uv-index").textContent = `UV-Index: ${aktuell.uvIndex}`;
-    document.getElementById("wolkendecke").textContent = `Wolkendecke: ${(aktuell.cloudCover * 100).toFixed(2)}%`;
-}
+    // Gefühlte Temperatur mit 2 Grad Abzug und auf ganze Zahl gerundet
+    const gefuehlteTemperaturCelsius = Math.round((aktuell.apparentTemperature - 32) * 5 / 9 );
+
+    // Temperatur und Icon einfügen
+    document.getElementById("temperatur").textContent = `${temperaturCelsius} °C`;
+    document.getElementById("zusammenfassung").innerHTML = zeigeWetterIcon(aktuell.icon);
+
+    // Zusätzliche Wetterdetails für den Wrapper
+    document.getElementById("karte-gefuehlte-temperatur").innerHTML = `Gefühlte Temperatur:<br>${Math.round((aktuell.apparentTemperature - 32) * 5 / 9 - 3.5)} °C`;
+    document.getElementById("karte-luftfeuchtigkeit").innerHTML = `Luftfeuchtigkeit:<br>${Math.round(aktuell.humidity * 100)}%`;
+    document.getElementById("karte-luftdruck").innerHTML = `Luftdruck:<br>${Math.round(aktuell.pressure)} hPa`;
+    document.getElementById("karte-windgeschwindigkeit").innerHTML = `Windgeschwindigkeit:<br>${Math.round(aktuell.windSpeed)} m/s`;
+    document.getElementById("karte-uv-index").innerHTML = `UV-Index:<br>${Math.round(aktuell.uvIndex)}`;
+    document.getElementById("karte-wolkendecke").innerHTML = `Wolkendecke:<br>${Math.round(aktuell.cloudCover * 100)}%`;
+}    
 
 function zeigeWetterIcon(zustand) {
     const iconMap = {
@@ -135,8 +143,15 @@ function zeigeWetterIcon(zustand) {
 let map; // Globale Variable für die Karte
 
 function initMap(lat, lon) {
+    const mapElement = document.getElementById("map");
+    const placeholder = document.getElementById("map-placeholder");
+
+    // Platzhalter ausblenden und Karte einblenden
+    if (placeholder) placeholder.style.display = "none";
+    mapElement.style.display = "block";
+
+    // Karte erstellen oder aktualisieren
     if (!map) {
-        // Karte erstmalig erstellen
         map = L.map('map').setView([lat, lon], 10);
 
         // OpenStreetMap-Tiles hinzufügen
@@ -144,7 +159,6 @@ function initMap(lat, lon) {
             attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
     } else {
-        // Karte auf neue Koordinaten zentrieren
         map.setView([lat, lon], 10);
     }
 
