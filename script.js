@@ -128,21 +128,22 @@ function zeigeAktuelleDaten(daten) {
 
 function zeigeWetterIcon(zustand) {
     const iconMap = {
-        "clear-day": "wb_sunny",
-        "clear-night": "nights_stay",
-        "rain": "rainy",
-        "snow": "ac_unit",
-        "sleet": "grain",
-        "wind": "air",
-        "fog": "blur_on",
-        "cloudy": "cloud",
-        "partly-cloudy-day": "wb_cloudy",
-        "partly-cloudy-night": "cloudy_night"
+        "clear-day": "mdi-white-balance-sunny",
+        "clear-night": "mdi-weather-night",
+        "rain": "mdi-weather-rainy",
+        "snow": "mdi-weather-snowy",
+        "sleet": "mdi-weather-snowy-rainy",
+        "wind": "mdi-weather-windy",
+        "fog": "mdi-weather-fog",
+        "cloudy": "mdi-weather-cloudy",
+        "partly-cloudy-day": "mdi-weather-partly-cloudy",
+        "partly-cloudy-night": "mdi-weather-night-partly-cloudy"
     };
 
-    const iconName = iconMap[zustand] || "help"; // Fallback-Icon
-    return `<span class="material-icons">${iconName}</span>`;
+    const iconClass = iconMap[zustand] || "mdi-help"; // Fallback-Icon
+    return `<span class="mdi ${iconClass}"></span>`;
 }
+
 // Funktion zur Anzeige der Karte
 let map; // Globale Variable für die Karte
 
@@ -170,4 +171,4 @@ function initMap(lat, lon) {
     L.marker([lat, lon]).addTo(map)
         .bindPopup('Gewählter Ort')
         .openPopup();
-}
+}  

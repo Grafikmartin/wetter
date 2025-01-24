@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="de">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,24 +10,33 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <link rel="icon" type="image/png" href="assets/wetter.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@mdi/font/css/materialdesignicons.min.css">
+
 </head>
+
 <body>
     <section class="container">
         <h1>Wetterdaten</h1>
         <div id="wetter-container">
-            <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
-            <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
-            <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
-            <button id="suchen">Suchen</button>
             <p id="status" class="laden">Gib einen Ort von diesem Planeten an</p>
+            <div class="row">
+                <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
+                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+            </div>
+            <div class="row">
+                <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
+                <button id="suchen">Suchen</button>
+            </div>
+
         </div>
         <div id="aktuelle-daten">
-            <h2>Aktuelle Wetterdaten</h2>
             <div id="temp-card">
-                <span id="temperatur"></span>
-                <span id="zusammenfassung"></span>
+                <h2>Aktuelle Wetterdaten</h2>
+                <div>
+                    <span id="temperatur"></span>
+                    <span id="zusammenfassung"></span>
+                </div>
             </div>
-            
         </div>
         <div class="wrapper">
             <div class="inner" style="--quantity: 6;">
@@ -50,9 +60,9 @@
                 </div>
             </div>
         </div>
-        
+
         <div id="map-container">
-            
+
             <div id="map-placeholder">
                 <img src="assets/globus.webp" alt="Globus" id="map-image" />
             </div>
@@ -64,7 +74,7 @@
             <p id="zeitzone"></p>
             <p id="hoehe"></p>
         </div>
-        
+
         <!--
         <div id="stunden-daten">
             <h2>Stündliche Vorhersage</h2>
@@ -75,7 +85,8 @@
             <div id="tage-container"></div>
         </div>-->
     </section>
-    
+
     <script src="script.js"></script>
 </body>
+
 </html>

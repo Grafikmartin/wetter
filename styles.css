@@ -3,11 +3,12 @@
     --text-color: #fff;
     --heading-color: #00bcd4;
     --button-border-color: #00bcd4;
-    --button-hover-bg: #00bcd4;
-    --button-hover-text: #000;
     --status-color: #00bcd4;
-    --card-bg-color: rgba(255, 255, 255, 0.1);
+    --card-bg-color: rgba(0, 0, 0, 0.5);
     --icon-color: #00bcd4;
+    --button-hover-bg: chocolate;
+    --button-hover-text: white;
+
 }
 
 body {
@@ -22,7 +23,7 @@ body {
 }
 
 .container {
-    width: 500px;
+    width: 460px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,6 +41,7 @@ h2 {
 h1 {
     font-size: 3rem;
 }
+
 .hidden {
     opacity: 0;
     transform: translateY(20px);
@@ -62,12 +64,32 @@ button {
     border-radius: 20px;
     background-color: black;
     color: var(--text-color);
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     text-align: center;
-    
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.1),
+        inset -2px -2px 5px rgba(0, 0, 0, 0.6);
 }
+
+#stadt-eingabe {
+    width: 200px;
+}
+
 #plz-eingabe {
     max-width: 100px;
+     background-color: black;
+}
+
+#land-eingabe {
+
+    width: 200px;
+}
+
+#suchen {
+    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.6),
+        inset -3px -3px 5px rgba(0, 0, 0, 0.9);
+    background-color: var(--heading-color);
+    width: 125px;
+    color: var(--background-color);
 }
 
 button {
@@ -75,24 +97,31 @@ button {
 
 }
 
-button:hover {
+.container button:hover {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
 }
 .laden {
-    animation: blinken 1.5s infinite; /* Blinkanimation */
+    animation: blinken 1.5s infinite;
+    /* Blinkanimation */
     color: var(--status-color);
 }
 
 /* Blinkanimation */
 @keyframes blinken {
-    0%, 100% {
-        opacity: 1; /* Volle Sichtbarkeit */
+
+    0%,
+    100% {
+        opacity: 1;
+        /* Volle Sichtbarkeit */
     }
+
     50% {
-        opacity: 0.5; /* Halbtransparent */
+        opacity: 0.5;
+        /* Halbtransparent */
     }
 }
+
 #status {
     margin: 10px 0;
     font-size: 18px;
@@ -111,12 +140,13 @@ button:hover {
 /* Container für die Temperatur-Card */
 #temp-card {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     background: var(--card-bg-color);
     border-radius: 15px;
     padding: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
     margin: 10px 0;
     width: auto;
     border: 1px solid var(--button-border-color);
@@ -124,6 +154,7 @@ button:hover {
 
 /* Temperaturstil */
 #temperatur {
+    vertical-align: middle;
     font-size: 6rem;
     color: var(--text-color);
     margin-right: 10px;
@@ -131,13 +162,13 @@ button:hover {
 }
 
 
-.material-icons {
+.mdi  {
     font-size: 110px;
     vertical-align: middle;
     color: var(--icon-color);
-    margin-left: 10px;
+    margin-left: 20px;
+    color: var(--icon-color);
 }
-
 
 #stunden-container div,
 #tage-container div {
@@ -153,6 +184,7 @@ button:hover {
 
 
 .wrapper {
+    margin-top: -50px;
     width: 600px;
     height: 220px;
     position: relative;
@@ -161,13 +193,13 @@ button:hover {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    z-index: -1;
 }
 
 .inner {
     --w: 180px;
     --h: 150px;
     --translateZ: calc((var(--w) + var(--h)) * 0.75);
-    /* Abstand der Karten vom Zentrum */
     --rotateX: -9deg;
     --perspective: 800px;
     position: absolute;
@@ -199,7 +231,7 @@ button:hover {
     transform: rotateY(calc(360deg / var(--quantity) * var(--index))) translateZ(var(--translateZ));
     backdrop-filter: blur(5px);
     border: 1px solid var(--button-border-color);
-    background: var(--card-bg-color);
+    background: rgba(0, 0, 0, 0.1);
 }
 
 /* Karte individuell ansprechbar */
@@ -274,89 +306,4 @@ button:hover {
     display: none;
 }
 
-/* Media Queries für kleinere Geräte */
-
-/* Für Geräte mit einer Breite von bis zu 768px (Tablets und kleinere Bildschirme) */
-@media (max-width: 768px) {
-    .container {
-        width: 100%;
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 2.5rem; /* Etwas kleinere Überschrift */
-    }
-
-    #temp-card {
-        flex-direction: column; /* Stapeln der Elemente */
-        text-align: center;
-    }
-
-    #temperatur {
-        font-size: 4rem; /* Kleinere Schriftgröße */
-    }
-
-    .material-icons {
-        font-size: 80px; /* Kleinere Icons */
-    }
-
-    .wrapper {
-        width: 100%; /* Breite anpassen */
-        height: auto; /* Automatische Höhe */
-    }
-
-    .inner {
-        --w: 120px;
-        --h: 100px;
-        --translateZ: calc((var(--w) + var(--h)) * 0.75); /* Abstand anpassen */
-    }
-}
-
-/* Für Geräte mit einer Breite von bis zu 480px (Smartphones und sehr kleine Bildschirme) */
-@media (max-width: 480px) {
-    body {
-        padding: 10px;
-    }
-
-    h1 {
-        font-size: 2rem; /* Noch kleinere Überschrift */
-    }
-
-    h2 {
-        font-size: 1.5rem; /* Auch kleinere Unterüberschrift */
-    }
-
-    #temp-card {
-        padding: 15px;
-    }
-
-    #temperatur {
-        font-size: 3rem; /* Schriftgröße weiter verkleinern */
-    }
-
-    .material-icons {
-        font-size: 60px; /* Kleinere Icons */
-    }
-
-    input,
-    button {
-        font-size: 14px; /* Kleinere Schriftgröße */
-        padding: 8px;
-    }
-
-    .wrapper {
-        width: 100%; /* Komplett responsive */
-        height: auto;
-    }
-
-    .inner {
-        --w: 100px;
-        --h: 80px;
-        --translateZ: calc((var(--w) + var(--h)) * 0.75); /* Abstand erneut anpassen */
-    }
-
-    #map {
-        width: 100%;
-        height: 200px;
-    }
-}
+/*
