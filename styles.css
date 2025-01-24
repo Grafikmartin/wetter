@@ -23,14 +23,24 @@ body {
 }
 
 .container {
-    width: 460px;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     /* Text zentrieren */
-    width: 90%;
+    width: auto;
     max-width: 800px;
+
+}
+
+.logo {
+    transform: scale(0.20);
+    /* 75 % kleiner */
+    display: block;
+    /* Verhindert unerwünschte Abstände */
+    margin-bottom: -110px;
+    /* Abstand zwischen Bild und H2 */
 }
 
 h1,
@@ -39,7 +49,7 @@ h2 {
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.7rem;
 }
 
 .hidden {
@@ -76,7 +86,7 @@ button {
 
 #plz-eingabe {
     max-width: 100px;
-     background-color: black;
+    background-color: black;
 }
 
 #land-eingabe {
@@ -101,6 +111,7 @@ button {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
 }
+
 .laden {
     animation: blinken 1.5s infinite;
     /* Blinkanimation */
@@ -133,36 +144,46 @@ button {
 #stunden-daten,
 #tage-daten {
     margin-top: 20px;
-    width: 80%;
+    width: 360px;
     max-width: 500px;
+}
+
+#aktuelle-daten {
+    display: flex;
+    justify-content: center;
+    /* Zentriert die Inhalte horizontal */
+    align-items: center;
+    /* Zentriert die Inhalte vertikal (falls nötig) */
 }
 
 /* Container für die Temperatur-Card */
 #temp-card {
+    margin: 0 auto;
+    /* Zentriert das Element horizontal */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     background: var(--card-bg-color);
     border-radius: 15px;
-    padding: 20px;
+    padding: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
     margin: 10px 0;
-    width: auto;
+
     border: 1px solid var(--button-border-color);
 }
 
 /* Temperaturstil */
 #temperatur {
     vertical-align: middle;
-    font-size: 6rem;
+    font-size: 4.5rem;
     color: var(--text-color);
     margin-right: 10px;
     /* Abstand zwischen Temperatur und Icon */
 }
 
 
-.mdi  {
+.mdi {
     font-size: 110px;
     vertical-align: middle;
     color: var(--icon-color);
@@ -185,21 +206,20 @@ button {
 
 .wrapper {
     margin-top: -50px;
-    width: 600px;
+    width: 520px;
     height: 220px;
     position: relative;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     z-index: -1;
 }
 
 .inner {
     --w: 180px;
     --h: 150px;
-    --translateZ: calc((var(--w) + var(--h)) * 0.75);
+    --translateZ: calc((var(--w) + var(--h)) * 0.6);
     --rotateX: -9deg;
     --perspective: 800px;
     position: absolute;
@@ -221,11 +241,11 @@ button {
 
 .card {
     position: absolute;
-    width: 180px;
+    width: 120px;
     /* Feste Breite */
-    height: 50px;
+    height: 40px;
     /* Feste Höhe */
-    border-radius: 12px;
+    border-radius: 15px;
     overflow: hidden;
     inset: 0;
     transform: rotateY(calc(360deg / var(--quantity) * var(--index))) translateZ(var(--translateZ));
@@ -252,7 +272,7 @@ button {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 0.8rem;
+    font-size: 0.6rem;
     /* Schriftgröße */
     font-weight: bold;
     color: var(--text-color);
@@ -262,26 +282,10 @@ button {
 }
 
 
-
-/* Kartencontainer */
 #map-container {
     display: none;
     margin-top: -40px;
     text-align: center;
-}
-
-/* Platzhalter-Bild */
-#map-placeholder {
-    width: 300px;
-    height: 300px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-
 }
 
 #map-image {
@@ -290,9 +294,8 @@ button {
     border-radius: 15px;
 }
 
-/* Karte */
 #map {
-    width: 500px;
+    width: 350px;
     height: 300px;
     margin: 0 auto;
     border-radius: 15px;
@@ -306,4 +309,15 @@ button {
     display: none;
 }
 
-/*
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    padding: 20px 0;
+    background-color: var(--background-color);
+}
+
+.footer-text {
+    color: var(--status-color);
+    font-size: 14px;
+    margin-top: 10px;
+}

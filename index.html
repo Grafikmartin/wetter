@@ -16,16 +16,19 @@
 
 <body>
     <section class="container">
-        <h1>Wetterdaten</h1>
+        <div class="logo"><img src="./assets/wetterfrosch.png" alt=""></div>
+        <h1>WetterFrosch 2.0</h1>
         <div id="wetter-container">
-            <p id="status" class="laden">Gib einen Ort von diesem Planeten an</p>
+            <p id="status" class="laden">Gib einen Ort deiner Wahl an.</p>
             <div class="row">
                 <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
-                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+                
+                <button id="suchen">Suchen</button>
             </div>
             <div class="row">
+                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
                 <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
-                <button id="suchen">Suchen</button>
+                
             </div>
 
         </div>
@@ -85,7 +88,10 @@
             <div id="tage-container"></div>
         </div>-->
     </section>
-
+    <footer class="footer">
+        <p class="footer-text">WetterFrosch 2.0 - Dein Wetter, immer im Blick</p>
+    </footer>
+    
     <script src="script.js"></script>
 </body>
 
