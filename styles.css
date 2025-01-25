@@ -167,9 +167,9 @@ button {
     background: var(--card-bg-color);
     border-radius: 15px;
     padding: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
-    margin: 10px 0;
 
+    margin: 10px 0;
+    z-index: -100;
     border: 1px solid var(--button-border-color);
 }
 
@@ -205,54 +205,68 @@ button {
 
 
 .wrapper {
-    margin-top: -50px;
-    width: 520px;
-    height: 220px;
+    top: 45px;
+    width: 100%;
+    height: 100%;
     position: relative;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: -1;
+
+    perspective: 1000px;
+    /* 3D-Perspektive für das Karussell */
+    z-index: -1000;
+
+    margin-bottom: 150px;
 }
 
+/* Inneres Element für die Karten-Rotation */
 .inner {
-    --w: 180px;
-    --h: 150px;
+    --w: 150px;
+    /* Breite der Karten */
+    --h: 15vh;
+    /* Höhe der Karten */
     --translateZ: calc((var(--w) + var(--h)) * 0.6);
-    --rotateX: -9deg;
-    --perspective: 800px;
+    /* Abstand der Karten von der Mitte */
+    --rotateX: -15deg;
+    /* Schrägstellung der Ansicht */
+    --perspective: 1000px;
     position: absolute;
     width: var(--w);
     height: var(--h);
+    z-index: 2;
     transform-style: preserve-3d;
-    animation: rotating 15s linear infinite;
+    transform: perspective(var(--perspective));
+    animation: rotating 20s linear infinite;
+    border-radius: 5px;
+
 }
 
 @keyframes rotating {
     from {
-        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(360deg);
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
     }
 
     to {
-        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(0);
+        transform: perspective(var(--perspective)) rotateX(var(--rotateX)) rotateY(-1turn);
     }
 }
 
+/* Karte für das Karussell */
 .card {
     position: absolute;
-    width: 120px;
-    /* Feste Breite */
-    height: 40px;
-    /* Feste Höhe */
+    width: 100%;
+    height: 45px;
     border-radius: 15px;
-    overflow: hidden;
-    inset: 0;
-    transform: rotateY(calc(360deg / var(--quantity) * var(--index))) translateZ(var(--translateZ));
-    backdrop-filter: blur(5px);
+    background-color: rgba(var(--color-card), 0.6);
+    transform: rotateY(calc((360deg / var(--quantity)) * var(--index))) translateZ(var(--translateZ));
+    box-shadow: 0 0vh 0px rgba(255, 255, 255, 0.9);
+    background-color: rgba(var(--color-card), 0.9);
     border: 1px solid var(--button-border-color);
-    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
 }
+
 
 /* Karte individuell ansprechbar */
 .card:nth-child(1) {}

@@ -40,25 +40,7 @@ document.getElementById("suchen").addEventListener("click", async () => {
 });
 
 
-/*
-function zeigeTageDaten(daten) {
-    const container = document.getElementById("tage-container");
-    container.innerHTML = ""; // Vorherige Inhalte löschen
 
-    daten.daily.data.forEach(tag => {
-        const datum = new Date(tag.time * 1000); // Zeitstempel umwandeln
-        container.innerHTML += `
-            <div>
-                <p><strong>${datum.toLocaleDateString()}</strong></p>
-                <p>Zusammenfassung: ${tag.summary}</p>
-                <p>Max. Temperatur: ${((tag.temperatureMax - 32) * 5 / 9).toFixed(2)} °C</p>
-                <p>Min. Temperatur: ${((tag.temperatureMin - 32) * 5 / 9).toFixed(2)} °C</p>
-                <p>UV-Index: ${tag.uvIndex}</p>
-                <p>Niederschlagswahrscheinlichkeit: ${(tag.precipProbability * 100).toFixed(2)}%</p>
-            </div>
-        `;
-    });
-}*/
 
 async function holeKoordinaten(stadt, plz, land) {
     const params = new URLSearchParams({ city: stadt, format: "json", limit: 1 });
@@ -86,23 +68,6 @@ function zeigeGrundlegendeInfo(daten) {
     document.getElementById("hoehe").textContent = `Höhe: ${daten.elevation} Meter`;
 }
 
-/*
-function zeigeStundenDaten(daten) {
-    const container = document.getElementById("stunden-container");
-    container.innerHTML = "";
-
-    daten.hourly.data.slice(0, 24).forEach(stunde => {
-        const zeit = new Date(stunde.time * 1000);
-        container.innerHTML += `
-            <div>
-                <p><strong>${zeit.toLocaleString()}</strong></p>
-                <p>Zusammenfassung: ${stunde.summary}</p>
-                <p>Temperatur: ${((stunde.temperature - 32) * 5 / 9).toFixed(2)} °C</p>
-                <p>Windgeschwindigkeit: ${stunde.windSpeed} m/s</p>
-            </div>
-        `;
-    });
-}*/
 function zeigeAktuelleDaten(daten) {
     const aktuell = daten.currently;
     if (!aktuell) return;
@@ -172,3 +137,39 @@ function initMap(lat, lon) {
         .bindPopup('Gewählter Ort')
         .openPopup();
 }  
+/*
+function zeigeTageDaten(daten) {
+    const container = document.getElementById("tage-container");
+    container.innerHTML = ""; // Vorherige Inhalte löschen
+
+    daten.daily.data.forEach(tag => {
+        const datum = new Date(tag.time * 1000); // Zeitstempel umwandeln
+        container.innerHTML += `
+            <div>
+                <p><strong>${datum.toLocaleDateString()}</strong></p>
+                <p>Zusammenfassung: ${tag.summary}</p>
+                <p>Max. Temperatur: ${((tag.temperatureMax - 32) * 5 / 9).toFixed(2)} °C</p>
+                <p>Min. Temperatur: ${((tag.temperatureMin - 32) * 5 / 9).toFixed(2)} °C</p>
+                <p>UV-Index: ${tag.uvIndex}</p>
+                <p>Niederschlagswahrscheinlichkeit: ${(tag.precipProbability * 100).toFixed(2)}%</p>
+            </div>
+        `;
+    });
+}*/
+/*
+function zeigeStundenDaten(daten) {
+    const container = document.getElementById("stunden-container");
+    container.innerHTML = "";
+
+    daten.hourly.data.slice(0, 24).forEach(stunde => {
+        const zeit = new Date(stunde.time * 1000);
+        container.innerHTML += `
+            <div>
+                <p><strong>${zeit.toLocaleString()}</strong></p>
+                <p>Zusammenfassung: ${stunde.summary}</p>
+                <p>Temperatur: ${((stunde.temperature - 32) * 5 / 9).toFixed(2)} °C</p>
+                <p>Windgeschwindigkeit: ${stunde.windSpeed} m/s</p>
+            </div>
+        `;
+    });
+}*/
