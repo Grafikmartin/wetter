@@ -1,5 +1,25 @@
 const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
 
+  
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        const exitFullscreenBtn = document.getElementById('exit-fullscreen-btn');
+
+        fullscreenBtn.addEventListener('click', () => {
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            }
+            fullscreenBtn.classList.add('hidden');
+            exitFullscreenBtn.classList.remove('hidden');
+        });
+
+        exitFullscreenBtn.addEventListener('click', () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
+            exitFullscreenBtn.classList.add('hidden');
+            fullscreenBtn.classList.remove('hidden');
+        });
+   
 document.getElementById("suchen").addEventListener("click", async () => {
     const stadt = document.getElementById("stadt-eingabe").value.trim();
     const plz = document.getElementById("plz-eingabe").value.trim();
@@ -63,9 +83,21 @@ async function ladeWetterDaten(lat, lon) {
 }
 
 function zeigeGrundlegendeInfo(daten) {
+    const timezone = daten.timezone; // Zeitzone des Orts
+    const unixTimestamp = daten.currently.time; // Aktuelle Zeit als Unix-Zeitstempel
+
+    // Ortszeit berechnen
+    const ortszeit = new Date(unixTimestamp * 1000).toLocaleString("de-DE", {
+        timeZone: timezone,
+        hour: "2-digit",
+        minute: "2-digit",
+        second: "2-digit",
+    });
+
     document.getElementById("koordinaten").textContent = `Koordinaten: ${daten.latitude}, ${daten.longitude}`;
-    document.getElementById("zeitzone").textContent = `Zeitzone: ${daten.timezone}`;
-    document.getElementById("hoehe").textContent = `Höhe: ${daten.elevation} Meter`;
+    document.getElementById("zeitzone").textContent = `Zeitzone: ${timezone}`;
+    document.getElementById("hoehe").textContent = `Höhe: ${(daten.elevation / 3.28084).toFixed(2)} Meter`;
+    document.getElementById("ortszeit").textContent = `Ortszeit: ${ortszeit}`;
 }
 
 function zeigeAktuelleDaten(daten) {

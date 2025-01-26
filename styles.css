@@ -21,7 +21,9 @@ body {
     margin: 0;
     padding: 20px;
 }
-
+html {
+    scroll-behavior: smooth;
+}
 .container {
 
     display: flex;
@@ -34,6 +36,35 @@ body {
     overflow-x: hidden;
 }
 
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 90px;
+    color: var(--status-color);
+    border-bottom: 1px solid var(--status-color);
+    opacity: .35;
+}
+
+.top-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--status-color);
+    font-size: 24px;
+}
+
+.icon-btn:hover {
+    color: #008c9e;
+}
+.hidden {
+    display: none;
+}
 .logo {
     transform: scale(0.20);
     /* 75 % kleiner */
@@ -64,7 +95,6 @@ h1 {
     transform: translateY(0);
 }
 
-
 input,
 button {
     margin: 5px;
@@ -76,8 +106,6 @@ button {
     color: var(--text-color);
     margin-bottom: 12px;
     text-align: center;
-    box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.1),
-        inset -2px -2px 5px rgba(0, 0, 0, 0.6);
 }
 
 #stadt-eingabe {
@@ -97,30 +125,30 @@ button {
 #suchen {
     box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.6),
         inset -3px -3px 5px rgba(0, 0, 0, 0.9);
-    
     width: 123px;
     color: var(--button-border-color);
     background-image: radial-gradient(at 88% 40%,
             hsla(240, 15%, 9%, 0.1) 0px,
             transparent 5%),
         radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
-        radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 10% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
         radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
 }
 
 button {
     cursor: pointer;
-
 }
+
 input:focus,
 textarea:focus {
     background-color: black;
     color: var(--text-color);
     border: 1px solid var(--button-border-color);
 }
+
 #suchen:hover {
     background-color: var(--button-hover-bg);
-    color: var(--button-hover-text);
+    color: var(--background-color);
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
@@ -189,15 +217,14 @@ textarea:focus {
         radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
         radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
         radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    animation: blob-bounce 5s infinite ease;
 }
 
-/* Temperaturstil */
 #temperatur {
     vertical-align: middle;
     font-size: 4.5rem;
     color: var(--text-color);
     margin-right: 10px;
-    /* Abstand zwischen Temperatur und Icon */
 }
 
 
@@ -219,11 +246,8 @@ textarea:focus {
 }
 
 
-/* karussel */
-
-
 .wrapper {
-    top: 65px;
+    top: 40px;
     width: 100%;
     height: 100%;
     position: relative;
@@ -231,24 +255,17 @@ textarea:focus {
     display: flex;
     align-items: center;
     justify-content: center;
-
     perspective: 1000px;
-    /* 3D-Perspektive für das Karussell */
-    z-index: -1000;
-
+    z-index: -4;
     margin-bottom: 150px;
 }
 
-/* Inneres Element für die Karten-Rotation */
+
 .inner {
     --w: 150px;
-    /* Breite der Karten */
     --h: 15vh;
-    /* Höhe der Karten */
-    --translateZ: calc((var(--w) + var(--h)) * 0.55);
-    /* Abstand der Karten von der Mitte */
+    --translateZ: calc((var(--w) + var(--h)) * 0.65);
     --rotateX: -15deg;
-    /* Schrägstellung der Ansicht */
     --perspective: 1000px;
     position: absolute;
     width: var(--w);
@@ -258,8 +275,6 @@ textarea:focus {
     transform: perspective(var(--perspective));
     animation: rotating 20s linear infinite;
     border-radius: 5px;
-
-
 }
 
 @keyframes rotating {
@@ -272,9 +287,7 @@ textarea:focus {
     }
 }
 
-/* Karte für das Karussell */
 .card {
-
     position: absolute;
     width: 100%;
     height: 45px;
@@ -288,25 +301,20 @@ textarea:focus {
     background-image: radial-gradient(at 88% 40%,
             hsla(240, 15%, 9%, 0.1) 0px,
             transparent 5%),
-
         radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
         radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
     box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
     backdrop-filter: blur(1px);
 }
 
-/* Karte individuell ansprechbar */
+/* Karte individuell ansprechbar 
 .card:nth-child(1) {}
-
 .card:nth-child(2) {}
-
 .card:nth-child(3) {}
-
 .card:nth-child(4) {}
-
 .card:nth-child(5) {}
-
-.card:nth-child(6) {}
+.card:nth-child(6) {} 
+*/
 
 .Wetterdaten {
     display: flex;
@@ -314,23 +322,18 @@ textarea:focus {
     align-items: center;
     text-align: center;
     font-size: 0.65rem;
-    /* Schriftgröße */
     font-weight: bold;
     color: var(--text-color);
-    /* Weißer Text */
     border-radius: 15px;
     padding: 10px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
-
 
 #map-container {
     display: none;
     margin-top: -40px;
     text-align: center;
 }
-
-
 
 #map {
     width: 350px;

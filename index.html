@@ -15,6 +15,22 @@
 </head>
 
 <body>
+    <header class="top-bar">
+        <div class="top-buttons">
+            <button id="fullscreen-btn" class="icon-btn" title="Vollbild">
+                <span class="material-icons">fullscreen</span>
+            </button>
+            <button id="exit-fullscreen-btn" class="icon-btn hidden" title="Normalmodus">
+                <span class="material-icons">fullscreen_exit</span>
+            </button>
+            <button id="settings-btn" class="icon-btn" title="Einstellungen">
+                <span class="material-icons">settings</span>
+            </button>
+            <button id="share-btn" class="icon-btn" title="Teilen">
+                <span class="material-icons">share</span>
+            </button>
+        </div>
+    </header>
     <section class="container">
         <div class="logo"><img src="./assets/wetterfrosch.png" alt=""></div>
         <h1>WetterFrosch 2.0</h1>
@@ -37,6 +53,7 @@
                     <span id="temperatur"></span>
                     <span id="zusammenfassung"></span>
                 </div>
+                <div class="blob"></div>
             </div>
         </div>
         <div class="wrapper">
@@ -72,11 +89,12 @@
         <div id="grundlegende-info">
             <h2>Grundlegende Informationen</h2>
             <p id="koordinaten"></p>
+            <p id="ortszeit"></p>
             <p id="zeitzone"></p>
             <p id="hoehe"></p>
         </div>
 
-        
+
         <div id="stunden-daten">
             <h2>Stündliche Vorhersage</h2>
             <div id="stunden-container"></div>
