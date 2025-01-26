@@ -6,7 +6,7 @@
     --status-color: #00bcd4;
     --card-bg-color: rgba(0, 0, 0, 0.5);
     --icon-color: #00bcd4;
-    --button-hover-bg: chocolate;
+    --button-hover-bg: #00bcd4;
     --button-hover-text: white;
 
 }
@@ -97,16 +97,27 @@ button {
 #suchen {
     box-shadow: inset 2px 2px 5px rgba(255, 255, 255, 0.6),
         inset -3px -3px 5px rgba(0, 0, 0, 0.9);
-    background-color: var(--heading-color);
+    
     width: 123px;
-    color: var(--background-color);
+    color: var(--button-border-color);
+    background-image: radial-gradient(at 88% 40%,
+            hsla(240, 15%, 9%, 0.1) 0px,
+            transparent 5%),
+        radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
+        radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
 }
 
 button {
     cursor: pointer;
 
 }
-
+input:focus,
+textarea:focus {
+    background-color: black;
+    color: var(--text-color);
+    border: 1px solid var(--button-border-color);
+}
 #suchen:hover {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
@@ -172,15 +183,12 @@ button {
     margin: 10px 0;
     z-index: -100;
     border: 1px solid var(--button-border-color);
-    background-image: radial-gradient(
-        at 88% 40%,
-        hsla(240, 15%, 9%, 0.1) 0px,
-        transparent 5%
-      ),
-      
-      radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
-      radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
-      radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    background-image: radial-gradient(at 88% 40%,
+            hsla(240, 15%, 9%, 0.1) 0px,
+            transparent 5%),
+        radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
+        radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
 }
 
 /* Temperaturstil */
@@ -250,7 +258,7 @@ button {
     transform: perspective(var(--perspective));
     animation: rotating 20s linear infinite;
     border-radius: 5px;
-    
+
 
 }
 
@@ -266,7 +274,7 @@ button {
 
 /* Karte für das Karussell */
 .card {
-    
+
     position: absolute;
     width: 100%;
     height: 45px;
@@ -276,18 +284,16 @@ button {
     box-shadow: 0 0vh 0px rgba(255, 255, 255, 0.9);
     background-color: rgba(var(--color-card), 0.9);
     border: 1px solid var(--button-border-color);
-    background-color:rgba(var(--color-card), 0.9);
-    background-image: radial-gradient(
-        at 88% 40%,
-        hsla(240, 15%, 9%, 0.1) 0px,
-        transparent 5%
-      ),
-     
-      radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
-      radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    background-color: rgba(var(--color-card), 0.9);
+    background-image: radial-gradient(at 88% 40%,
+            hsla(240, 15%, 9%, 0.1) 0px,
+            transparent 5%),
+
+        radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
     box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
     backdrop-filter: blur(1px);
-  }
+}
 
 /* Karte individuell ansprechbar */
 .card:nth-child(1) {}
