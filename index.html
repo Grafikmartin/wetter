@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wetterdaten</title>
+    <title>Wetterfrosch 2.0</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -22,15 +22,13 @@
             <p id="status" class="laden">Gib einen Ort deiner Wahl an.</p>
             <div class="row">
                 <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
-                
-                <button id="suchen">Suchen</button>
+                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+
             </div>
             <div class="row">
-                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
                 <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
-                
+                <button id="suchen">Suchen</button>
             </div>
-
         </div>
         <div id="aktuelle-daten">
             <div id="temp-card">
@@ -78,7 +76,7 @@
             <p id="hoehe"></p>
         </div>
 
-        <!--
+        
         <div id="stunden-daten">
             <h2>Stündliche Vorhersage</h2>
             <div id="stunden-container"></div>
@@ -86,12 +84,12 @@
         <div id="tage-daten">
             <h2>Tägliche Vorhersage</h2>
             <div id="tage-container"></div>
-        </div>-->
+        </div>
     </section>
     <footer class="footer">
         <p class="footer-text">WetterFrosch 2.0 - Dein Wetter, immer im Blick</p>
     </footer>
-    
+
     <script src="script.js"></script>
 </body>
 

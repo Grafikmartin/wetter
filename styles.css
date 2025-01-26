@@ -107,9 +107,10 @@ button {
 
 }
 
-.container button:hover {
+#suchen:hover {
     background-color: var(--button-hover-bg);
     color: var(--button-hover-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .laden {
@@ -167,10 +168,19 @@ button {
     background: var(--card-bg-color);
     border-radius: 15px;
     padding: 10px;
-
+    backdrop-filter: blur(1px);
     margin: 10px 0;
     z-index: -100;
     border: 1px solid var(--button-border-color);
+    background-image: radial-gradient(
+        at 88% 40%,
+        hsla(240, 15%, 9%, 0.1) 0px,
+        transparent 5%
+      ),
+      
+      radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
+      radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+      radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
 }
 
 /* Temperaturstil */
@@ -205,7 +215,7 @@ button {
 
 
 .wrapper {
-    top: 45px;
+    top: 65px;
     width: 100%;
     height: 100%;
     position: relative;
@@ -227,7 +237,7 @@ button {
     /* Breite der Karten */
     --h: 15vh;
     /* Höhe der Karten */
-    --translateZ: calc((var(--w) + var(--h)) * 0.6);
+    --translateZ: calc((var(--w) + var(--h)) * 0.55);
     /* Abstand der Karten von der Mitte */
     --rotateX: -15deg;
     /* Schrägstellung der Ansicht */
@@ -240,6 +250,7 @@ button {
     transform: perspective(var(--perspective));
     animation: rotating 20s linear infinite;
     border-radius: 5px;
+    
 
 }
 
@@ -255,6 +266,7 @@ button {
 
 /* Karte für das Karussell */
 .card {
+    
     position: absolute;
     width: 100%;
     height: 45px;
@@ -264,9 +276,18 @@ button {
     box-shadow: 0 0vh 0px rgba(255, 255, 255, 0.9);
     background-color: rgba(var(--color-card), 0.9);
     border: 1px solid var(--button-border-color);
-    backdrop-filter: blur(5px);
-}
-
+    background-color:rgba(var(--color-card), 0.9);
+    background-image: radial-gradient(
+        at 88% 40%,
+        hsla(240, 15%, 9%, 0.1) 0px,
+        transparent 5%
+      ),
+     
+      radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+      radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
+    backdrop-filter: blur(1px);
+  }
 
 /* Karte individuell ansprechbar */
 .card:nth-child(1) {}
@@ -286,13 +307,14 @@ button {
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 0.6rem;
+    font-size: 0.65rem;
     /* Schriftgröße */
     font-weight: bold;
     color: var(--text-color);
     /* Weißer Text */
     border-radius: 15px;
     padding: 10px;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
 
 
@@ -302,11 +324,7 @@ button {
     text-align: center;
 }
 
-#map-image {
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 15px;
-}
+
 
 #map {
     width: 350px;

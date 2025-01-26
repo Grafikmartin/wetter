@@ -137,7 +137,7 @@ function initMap(lat, lon) {
         .bindPopup('Gewählter Ort')
         .openPopup();
 }  
-/*
+
 function zeigeTageDaten(daten) {
     const container = document.getElementById("tage-container");
     container.innerHTML = ""; // Vorherige Inhalte löschen
@@ -155,8 +155,7 @@ function zeigeTageDaten(daten) {
             </div>
         `;
     });
-}*/
-/*
+}
 function zeigeStundenDaten(daten) {
     const container = document.getElementById("stunden-container");
     container.innerHTML = "";
@@ -172,4 +171,4 @@ function zeigeStundenDaten(daten) {
             </div>
         `;
     });
-}*/
+}
