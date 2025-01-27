@@ -1,21 +1,23 @@
 :root {
     --background-color: #000;
-    --text-color: #fff;
+    --text-color: #00bcd4;
     --heading-color: #00bcd4;
     --button-border-color: #00bcd4;
     --status-color: #00bcd4;
     --card-bg-color: rgba(0, 0, 0, 0.5);
-    --icon-color: #00bcd4;
+    --wetterIcon-color: #00bcd4;
     --button-hover-bg: #00bcd4;
     --button-hover-text: white;
-
+    --icon-color: #ffffff;
 }
+
 * {
     margin: 0;
     padding: 0;
     vertical-align: middle;
     box-sizing: border-box;
 }
+
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -25,11 +27,25 @@ body {
     align-items: center;
     margin: 0;
     padding: 20px;
-    
+    cursor: url('./assets/cursor.png'), auto;
 }
+
+button,
+a {
+    cursor: url('./assets/pointer.png'), pointer;
+    /* Froschhand für Pointer */
+}
+
+button,
+input,
+.bereich {
+    cursor: url('./assets/pointer.png'), pointer;
+}
+
 html {
     scroll-behavior: smooth;
 }
+
 .container {
 
     display: flex;
@@ -40,7 +56,7 @@ html {
     width: auto;
     max-width: 800px;
     overflow-x: hidden;
-    
+
 }
 
 .top-bar {
@@ -48,8 +64,8 @@ html {
     justify-content: space-between;
     align-items: center;
     padding: 0px 90px;
-    color: var(--status-color);
-   
+    color: var(--icon-color);
+    opacity: .25;
 }
 
 .top-buttons {
@@ -61,25 +77,25 @@ html {
     background: none;
     border: none;
     cursor: pointer;
-    color: var(--status-color);
+    color: var(--icon-color);
     font-size: 24px;
     transition: background-color 0.5s ease, transform 0.5s ease;
+    cursor: url('./assets/pointer.png') 10 5, pointer;
 }
 
 .icon-btn:hover {
-  opacity: 1;
-  transform: scale(1.1);
+    opacity: 1;
+    transform: scale(1.1);
 }
+
 .hidden {
     display: none;
 }
+
 .logo {
     transform: scale(0.20);
-   
     display: block;
-  
     margin-bottom: -80px;
-   
 }
 
 h1,
@@ -104,6 +120,18 @@ h1 {
     transform: translateY(0);
 }
 
+.laden {
+    animation: blinken 1.5s infinite;
+    /* Blinkanimation */
+    color: var(--status-color);
+}
+
+#status {
+    margin: 10px 0;
+    font-size: 14px;
+    color: var(--status-color);
+}
+
 input,
 button {
     margin: 5px;
@@ -115,7 +143,7 @@ button {
     color: var(--text-color);
     margin-bottom: 12px;
     text-align: center;
- 
+
 }
 
 #stadt-eingabe {
@@ -149,6 +177,13 @@ button {
     transition: background-color 1s ease, transform 0.5s ease;
 }
 
+#suchen:hover {
+    background-color: var(--button-hover-bg);
+    color: var(--background-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    cursor: url('./assets/pointer.png') 10 5, pointer;
+}
+
 input:focus,
 textarea:focus {
     background-color: black;
@@ -156,19 +191,36 @@ textarea:focus {
     border: 1px solid var(--button-border-color);
 }
 
-#suchen:hover {
-    background-color: var(--button-hover-bg);
-    color: var(--background-color);
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* Autofill-Hintergrund und Schriftfarbe anpassen */
+input:-webkit-autofill {
+    background-color: black !important;
+    /* Hintergrundfarbe setzen */
+    color: var(--text-color) !important;
+    /* Schriftfarbe mit Ihrer Variable setzen */
+    -webkit-text-fill-color: var(--text-color) !important;
+    /* Textfüllfarbe explizit setzen */
+    box-shadow: 0 0 0px 1000px black inset !important;
+    /* Schatten entfernen und Hintergrund überschreiben */
 }
 
-.laden {
-    animation: blinken 1.5s infinite;
-    /* Blinkanimation */
-    color: var(--status-color);
+/* Unterstützung für Firefox */
+input:-moz-autofill {
+    background-color: black !important;
+    /* Hintergrundfarbe setzen */
+    color: var(--text-color) !important;
+    /* Schriftfarbe mit Ihrer Variable setzen */
 }
 
-/* Blinkanimation */
+/* Fokusverhalten sicherstellen */
+input:focus {
+    background-color: black;
+    /* Hintergrund bleibt Schwarz */
+    color: var(--text-color);
+    /* Schriftfarbe bleibt wie gewünscht */
+    border: 1px solid var(--button-border-color);
+
+}
+
 @keyframes blinken {
 
     0%,
@@ -183,11 +235,8 @@ textarea:focus {
     }
 }
 
-#status {
-    margin: 10px 0;
-    font-size: 14px;
-    color: var(--status-color);
-}
+
+
 
 #grundlegende-info,
 #aktuelle-daten,
@@ -203,11 +252,11 @@ textarea:focus {
     justify-content: center;
     align-items: center;
     margin-top: 50px;
-    }
+}
 
 #temp-card {
     margin: 0 auto;
-   
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -239,19 +288,11 @@ textarea:focus {
 .mdi {
     font-size: 110px;
     vertical-align: middle;
-    color: var(--icon-color);
+    color: var(--wetterIcon-color);
     margin-left: 20px;
-    color: var(--icon-color);
+
 }
 
-#stunden-container div,
-#tage-container div {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid var(--text-color);
-    border-radius: 5px;
-    background-color: var(--card-bg-color);
-}
 
 
 .wrapper {
@@ -336,12 +377,8 @@ textarea:focus {
     padding: 10px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
-h2{
-margin-bottom: 5px;
-}
-p {
-    margin: 5px 0;
-}
+
+
 #map-container {
     display: none;
     margin-top: -40px;
@@ -355,6 +392,28 @@ p {
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border: 3px solid var(--button-border-color);
+}
+
+#grundlegende-info {
+    width: 350px;
+    border: 1px solid var(--button-border-color);
+    border-radius: 15px;
+    background-image: radial-gradient(at 88% 40%,
+            hsla(240, 15%, 9%, 0.1) 0px,
+            transparent 5%),
+        radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
+    backdrop-filter: blur(1px);
+}
+
+h2 {
+
+    padding: 15px;
+}
+
+p {
+    margin: 5px 0;
 }
 
 #aktuelle-daten,
