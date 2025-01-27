@@ -191,32 +191,32 @@ textarea:focus {
     border: 1px solid var(--button-border-color);
 }
 
-/* Autofill-Hintergrund und Schriftfarbe anpassen */
+
 input:-webkit-autofill {
     background-color: black !important;
-    /* Hintergrundfarbe setzen */
+   
     color: var(--text-color) !important;
-    /* Schriftfarbe mit Ihrer Variable setzen */
+   
     -webkit-text-fill-color: var(--text-color) !important;
-    /* Textfüllfarbe explizit setzen */
+    
     box-shadow: 0 0 0px 1000px black inset !important;
-    /* Schatten entfernen und Hintergrund überschreiben */
+    
 }
 
 /* Unterstützung für Firefox */
 input:-moz-autofill {
     background-color: black !important;
-    /* Hintergrundfarbe setzen */
+    
     color: var(--text-color) !important;
-    /* Schriftfarbe mit Ihrer Variable setzen */
-}
+   
+}  
 
-/* Fokusverhalten sicherstellen */
+
 input:focus {
     background-color: black;
-    /* Hintergrund bleibt Schwarz */
+   
     color: var(--text-color);
-    /* Schriftfarbe bleibt wie gewünscht */
+  
     border: 1px solid var(--button-border-color);
 
 }
@@ -398,13 +398,13 @@ input:focus {
     width: 350px;
     border: 1px solid var(--button-border-color);
     border-radius: 15px;
+    background: var(--card-bg-color);
     background-image: radial-gradient(at 88% 40%,
             hsla(240, 15%, 9%, 0.1) 0px,
             transparent 5%),
-        radial-gradient(at 0% 0%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
+        radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
         radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
-    box-shadow: 0px -16px 24px 0px rgba(255, 255, 255, 0.15) inset;
-    backdrop-filter: blur(1px);
 }
 
 h2 {
