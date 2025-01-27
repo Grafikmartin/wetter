@@ -415,6 +415,9 @@ h2 {
 p {
     margin: 5px 0;
 }
+#hoehe {
+    padding-bottom: 25px;
+}
 
 #aktuelle-daten,
 .wrapper,
