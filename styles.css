@@ -27,19 +27,19 @@ body {
     align-items: center;
     margin: 0;
     padding: 20px;
-    cursor: url('./assets/cursor.png'), auto;
+    cursor: url('./assets/cursor.png') 10 5, auto;
 }
 
 button,
 a {
-    cursor: url('./assets/pointer.png'), pointer;
+    cursor: url('./assets/pointer.png') 10 5, pointer;
     /* Froschhand für Pointer */
 }
 
 button,
 input,
 .bereich {
-    cursor: url('./assets/pointer.png'), pointer;
+    cursor: url('./assets/pointer.png') 10 5,pointer;
 }
 
 html {
