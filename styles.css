@@ -89,6 +89,7 @@ h2 {
 
 h1 {
     font-size: 2.7rem;
+    margin-bottom: 60px;
 }
 
 .hidden {
@@ -184,7 +185,7 @@ textarea:focus {
 
 #status {
     margin: 10px 0;
-    font-size: 18px;
+    font-size: 14px;
     color: var(--status-color);
 }
 
