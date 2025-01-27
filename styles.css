@@ -296,7 +296,7 @@ input:focus {
 
 
 .wrapper {
-    top: 40px;
+    top: 45px;
     width: 100%;
     height: 100%;
     position: relative;
@@ -313,7 +313,7 @@ input:focus {
 .inner {
     --w: 150px;
     --h: 15vh;
-    --translateZ: calc((var(--w) + var(--h)) * 0.65);
+    --translateZ: calc((var(--w) + var(--h)) * 0.61);
     --rotateX: -15deg;
     --perspective: 1000px;
     position: absolute;
