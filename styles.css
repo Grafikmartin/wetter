@@ -10,7 +10,12 @@
     --button-hover-text: white;
 
 }
-
+* {
+    margin: 0;
+    padding: 0;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
 body {
     background-color: var(--background-color);
     color: var(--text-color);
@@ -20,6 +25,7 @@ body {
     align-items: center;
     margin: 0;
     padding: 20px;
+    
 }
 html {
     scroll-behavior: smooth;
@@ -34,6 +40,7 @@ html {
     width: auto;
     max-width: 800px;
     overflow-x: hidden;
+    
 }
 
 .top-bar {
@@ -42,8 +49,7 @@ html {
     align-items: center;
     padding: 0px 90px;
     color: var(--status-color);
-    border-bottom: 1px solid var(--status-color);
-    opacity: .35;
+   
 }
 
 .top-buttons {
@@ -57,21 +63,23 @@ html {
     cursor: pointer;
     color: var(--status-color);
     font-size: 24px;
+    transition: background-color 0.5s ease, transform 0.5s ease;
 }
 
 .icon-btn:hover {
-    color: #008c9e;
+  opacity: 1;
+  transform: scale(1.1);
 }
 .hidden {
     display: none;
 }
 .logo {
     transform: scale(0.20);
-    /* 75 % kleiner */
+   
     display: block;
-    /* Verhindert unerwünschte Abstände */
-    margin-bottom: -110px;
-    /* Abstand zwischen Bild und H2 */
+  
+    margin-bottom: -80px;
+   
 }
 
 h1,
@@ -106,6 +114,7 @@ button {
     color: var(--text-color);
     margin-bottom: 12px;
     text-align: center;
+ 
 }
 
 #stadt-eingabe {
@@ -113,12 +122,11 @@ button {
 }
 
 #plz-eingabe {
-    max-width: 100px;
+    width: 123px;
     background-color: black;
 }
 
 #land-eingabe {
-
     width: 200px;
 }
 
@@ -137,6 +145,7 @@ button {
 
 button {
     cursor: pointer;
+    transition: background-color 1s ease, transform 0.5s ease;
 }
 
 input:focus,
@@ -191,15 +200,13 @@ textarea:focus {
 #aktuelle-daten {
     display: flex;
     justify-content: center;
-    /* Zentriert die Inhalte horizontal */
     align-items: center;
-    /* Zentriert die Inhalte vertikal (falls nötig) */
-}
+    margin-top: 50px;
+    }
 
-/* Container für die Temperatur-Card */
 #temp-card {
     margin: 0 auto;
-    /* Zentriert das Element horizontal */
+   
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -328,7 +335,12 @@ textarea:focus {
     padding: 10px;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
 }
-
+h2{
+margin-bottom: 5px;
+}
+p {
+    margin: 5px 0;
+}
 #map-container {
     display: none;
     margin-top: -40px;

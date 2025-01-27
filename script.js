@@ -19,7 +19,11 @@ const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
             exitFullscreenBtn.classList.add('hidden');
             fullscreenBtn.classList.remove('hidden');
         });
-   
+        document.getElementById('refresh-btn').addEventListener('click', function() {
+          
+            location.reload();
+        });
+        
 document.getElementById("suchen").addEventListener("click", async () => {
     const stadt = document.getElementById("stadt-eingabe").value.trim();
     const plz = document.getElementById("plz-eingabe").value.trim();
