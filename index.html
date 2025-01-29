@@ -66,7 +66,7 @@
             </div>
         </div>
         <div class="wrapper">
-            <div class="inner" style="--quantity: 6;">
+            <div class="inner" style="--quantity: 8;">
                 <div class="card" style="--index: 0;">
                     <div class="Wetterdaten" id="karte-gefuehlte-temperatur">Gefühlte Temperatur:<br> xx °C</div>
                 </div>
@@ -80,19 +80,24 @@
                     <div class="Wetterdaten" id="karte-windgeschwindigkeit">Windgeschwindigkeit:<br> xx m/s</div>
                 </div>
                 <div class="card" style="--index: 4;">
-                    <div class="Wetterdaten" id="karte-uv-index">UV-Index:<br> xx</div>
+                    <div class="Wetterdaten" id="karte-boeen">Böen:<br> xx m/s</div>
                 </div>
                 <div class="card" style="--index: 5;">
+                    <div class="Wetterdaten" id="karte-uv-index">UV-Index:<br> xx</div>
+                </div>
+                <div class="card" style="--index: 6;">
                     <div class="Wetterdaten" id="karte-wolkendecke">Wolkendecke:<br> xx%</div>
                 </div>
+                <div class="card" style="--index: 7;">
+                    <div class="Wetterdaten" id="karte-sichtweite">Sichtweite:<br> xx km</div>
+                </div>
+               
             </div>
         </div>
 
         <div id="map-container">
 
-            <div id="map-placeholder">
-                <img src="assets/globus.webp" alt="Globus" id="map-image" />
-            </div>
+            
             <div id="map" style="display: none;"></div>
         </div>
         <div id="grundlegende-info">
@@ -103,21 +108,30 @@
             <p id="hoehe"></p>
         </div>
 
-<!--
-        <div id="stunden-daten">
+        <!--
+
+-->
+
+        <div id="stunden-daten" class="hidden">
             <h2>Stündliche Vorhersage</h2>
-            <div id="stunden-container"></div>
+            <div class="Temperatur-Stunden"></div>
+            <div class="Niederschlag-Stunden"></div>
+            <div class="Wind-Stunden"></div>
+            <button class="TemperaturC">Temperatur in C°</button>
+            <button class="Niederschlag-mm">Niederschlag in mm</button>
+            <button class="Wind-km/h">Wind in km/h</button>
         </div>
-        <div id="tage-daten">
-            <h2>Tägliche Vorhersage</h2>
-            <div id="tage-container"></div>
-        </div>-->
+
     </section>
     <footer class="footer">
         <p class="footer-text">WetterFrosch 2.0 - Dein Wetter, immer im Blick</p>
     </footer>
 
-    <script src="script.js"></script>
+    <script defer src="stundenwetter.js"></script>
+    <script defer src="script.js"></script>
+
+
+
 </body>
 
 </html>

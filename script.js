@@ -1,4 +1,4 @@
-const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
+
 
 
 const fullscreenBtn = document.getElementById('fullscreen-btn');
@@ -40,7 +40,8 @@ document.getElementById("suchen").addEventListener("click", async () => {
         const koords = await holeKoordinaten(stadt, plz, land);
         if (!koords) throw new Error("Ort nicht gefunden.");
 
-        const wetterDaten = await ladeWetterDaten(koords.lat, koords.lon);
+        const wetterDaten = await ladeWetterDaten(koords.lat, koords.lon); 
+        ladeStundenWetter(koords.lat, koords.lon);
 
         zeigeGrundlegendeInfo(wetterDaten);
         zeigeAktuelleDaten(wetterDaten);
@@ -126,12 +127,14 @@ function zeigeAktuelleDaten(daten) {
     document.getElementById("zusammenfassung").innerHTML = zeigeWetterIcon(aktuell.icon);
 
     // Zusätzliche Wetterdetails für den Wrapper
-    document.getElementById("karte-gefuehlte-temperatur").innerHTML = `Gefühlte Temperatur:<br>${Math.round((aktuell.apparentTemperature - 32) * 5 / 9 - 3.5)} °C`;
+    document.getElementById("karte-gefuehlte-temperatur").innerHTML = `Gefühlte<br>Temperatur:${Math.round((aktuell.apparentTemperature - 32) * 5 / 9 - 3.5)} °C`;
     document.getElementById("karte-luftfeuchtigkeit").innerHTML = `Luftfeuchtigkeit:<br>${Math.round(aktuell.humidity * 100)}%`;
     document.getElementById("karte-luftdruck").innerHTML = `Luftdruck:<br>${Math.round(aktuell.pressure)} hPa`;
-    document.getElementById("karte-windgeschwindigkeit").innerHTML = `Windgeschwindigkeit:<br>${Math.round(aktuell.windSpeed)} m/s`;
+    document.getElementById("karte-windgeschwindigkeit").innerHTML = `Windgeschwind-<br>igkeit:${Math.round(aktuell.windSpeed)} m/s`;
     document.getElementById("karte-uv-index").innerHTML = `UV-Index:<br>${Math.round(aktuell.uvIndex)}`;
     document.getElementById("karte-wolkendecke").innerHTML = `Wolkendecke:<br>${Math.round(aktuell.cloudCover * 100)}%`;
+    document.getElementById("karte-boeen").innerHTML = `Böen bis zu:<br>${Math.round(aktuell.windGust)} m/s`;
+    document.getElementById("karte-sichtweite").innerHTML = `Sichtweite:<br>${Math.round(aktuell.visibility)} m/s`;
 }
 
 function zeigeWetterIcon(zustand) {
@@ -215,46 +218,19 @@ function zeigeStundenDaten(daten) {
         `;
     });
 }
-/*
-// Funktion, um die Slider-Daten anzuzeigen
-function zeigeStundenDaten(daten) {
-    const slidersContainer = document.getElementById("sliders-container");
-    slidersContainer.innerHTML = ""; // Vorherige Inhalte löschen
 
-    daten.hourly.data.slice(0, 24).forEach((stunde) => {
-        const temperatur = ((stunde.temperature - 32) * 5) / 9; // Umrechnung in Celsius
-        const prozent = ((temperatur + 30) / 80) * 100; // Prozentuale Höhe (80°C Range)
-
-        const sliderWrapper = document.createElement("div");
-        sliderWrapper.classList.add("slider-wrapper");
-
-        for (let i = 0; i < 80; i++) {
-            const step = document.createElement("div");
-            step.classList.add("slider-step");
-
-            // Aktivieren, wenn der aktuelle Step zur Temperatur gehört
-            if (i / 80 * 100 <= prozent) {
-                step.classList.add("active");
-            }
-
-            sliderWrapper.appendChild(step);
-        }
-
-        slidersContainer.appendChild(sliderWrapper);
-    });
+function windRichtungBestimmen(winkel) {
+    const richtungen = [
+        { name: "N", icon: "mdi-arrow-up" },
+        { name: "NO", icon: "mdi-arrow-top-right" },
+        { name: "O", icon: "mdi-arrow-right" },
+        { name: "SO", icon: "mdi-arrow-bottom-right" },
+        { name: "S", icon: "mdi-arrow-down" },
+        { name: "SW", icon: "mdi-arrow-bottom-left" },
+        { name: "W", icon: "mdi-arrow-left" },
+        { name: "NW", icon: "mdi-arrow-top-left" }
+    ];
+    
+    const index = Math.round(winkel / 45) % 8;
+    return `<span class="mdi ${richtungen[index].icon}"></span> ${richtungen[index].name}`;
 }
-
-// Beispiel-Daten abrufen und Funktion aufrufen
-async function ladeWetterDaten() {
-    const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
-    const lat = 52.52; // Beispiel: Berlin
-    const lon = 13.405;
-    const apiUrl = `https://api.pirateweather.net/forecast/${API_KEY}/${lat},${lon}?extend=hourly`;
-    const response = await fetch(apiUrl);
-    if (!response.ok) throw new Error("Fehler beim Abrufen der Wetterdaten.");
-    const daten = await response.json();
-    zeigeStundenDaten(daten);
-}
-
-// Daten laden
-ladeWetterDaten().catch((error) => console.error(error));*/
