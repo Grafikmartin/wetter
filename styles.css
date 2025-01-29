@@ -425,6 +425,86 @@ p {
     display: none;
 }
 
+
+
+
+
+#stunden-container {
+    display: flex;
+    align-items: flex-start;
+    background: var(--card-bg-color);
+    border: 1px solid var(--button-border-color);
+    background-image: radial-gradient(at 88% 40%,
+            hsla(240, 15%, 9%, 0.1) 0px,
+            transparent 5%),
+        radial-gradient(at 0% 4%, hsla(189, 99%, 26%, .5) 0px, transparent 50%),
+        radial-gradient(at 41% 4%, hsla(189, 97%, 36%, .5) 0px, transparent 50%),
+        radial-gradient(at 100% 99%, hsla(188, 94%, 13%, .5) 0px, transparent 50%);
+    margin-top: 50px;
+    margin-bottom: 50px;
+border-radius: 15px; ;
+    }
+        
+
+#y-axis {
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 160px; /* 80 Stufen * 2px */
+    margin-left: 5px;
+    margin-right: 5px;   
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+#sliders-container {
+    padding-top: 20px;
+    display: flex;
+    gap: 4px;
+    margin-right: 5px;
+    margin-bottom: 10px;
+}
+
+.slider-wrapper {
+    padding-top: 20px;
+    position: relative;
+    height: 160px;
+    width:8px;
+    border: 1px solid var(--button-border-color);
+    display: flex;
+    flex-direction: column-reverse;
+    padding-top: 20px;
+}
+
+.slider-step {
+    width: 100%;
+    height: 2px;
+    background-color: transparent;
+}
+.slider-step.active {
+    background-color: #00bcd4;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .footer {
     text-align: center;
     margin-top: 20px;

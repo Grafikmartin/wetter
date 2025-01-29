@@ -1,29 +1,29 @@
 const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
 
-  
-        const fullscreenBtn = document.getElementById('fullscreen-btn');
-        const exitFullscreenBtn = document.getElementById('exit-fullscreen-btn');
 
-        fullscreenBtn.addEventListener('click', () => {
-            if (document.documentElement.requestFullscreen) {
-                document.documentElement.requestFullscreen();
-            }
-            fullscreenBtn.classList.add('hidden');
-            exitFullscreenBtn.classList.remove('hidden');
-        });
+const fullscreenBtn = document.getElementById('fullscreen-btn');
+const exitFullscreenBtn = document.getElementById('exit-fullscreen-btn');
 
-        exitFullscreenBtn.addEventListener('click', () => {
-            if (document.exitFullscreen) {
-                document.exitFullscreen();
-            }
-            exitFullscreenBtn.classList.add('hidden');
-            fullscreenBtn.classList.remove('hidden');
-        });
-        document.getElementById('refresh-btn').addEventListener('click', function() {
-          
-            location.reload();
-        });
-        
+fullscreenBtn.addEventListener('click', () => {
+    if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen();
+    }
+    fullscreenBtn.classList.add('hidden');
+    exitFullscreenBtn.classList.remove('hidden');
+});
+
+exitFullscreenBtn.addEventListener('click', () => {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    }
+    exitFullscreenBtn.classList.add('hidden');
+    fullscreenBtn.classList.remove('hidden');
+});
+document.getElementById('refresh-btn').addEventListener('click', function () {
+
+    location.reload();
+});
+
 document.getElementById("suchen").addEventListener("click", async () => {
     const stadt = document.getElementById("stadt-eingabe").value.trim();
     const plz = document.getElementById("plz-eingabe").value.trim();
@@ -63,8 +63,15 @@ document.getElementById("suchen").addEventListener("click", async () => {
     }
 });
 
+    // Enter funktioniert jetzt nach Ortsangabe
 
+const stadtEingabe = document.getElementById("stadt-eingabe");
+stadtEingabe.addEventListener('keypress', function (event) {
 
+    if (event.keyCode === 13) {
+        document.getElementById("suchen").click();
+    }
+});
 
 async function holeKoordinaten(stadt, plz, land) {
     const params = new URLSearchParams({ city: stadt, format: "json", limit: 1 });
@@ -112,7 +119,7 @@ function zeigeAktuelleDaten(daten) {
     const temperaturCelsius = Math.round((aktuell.temperature - 32) * 5 / 9 - 3.5);
 
     // Gefühlte Temperatur mit 2 Grad Abzug und auf ganze Zahl gerundet
-    const gefuehlteTemperaturCelsius = Math.round((aktuell.apparentTemperature - 32) * 5 / 9 );
+    const gefuehlteTemperaturCelsius = Math.round((aktuell.apparentTemperature - 32) * 5 / 9);
 
     // Temperatur und Icon einfügen
     document.getElementById("temperatur").textContent = `${temperaturCelsius} °C`;
@@ -125,7 +132,7 @@ function zeigeAktuelleDaten(daten) {
     document.getElementById("karte-windgeschwindigkeit").innerHTML = `Windgeschwindigkeit:<br>${Math.round(aktuell.windSpeed)} m/s`;
     document.getElementById("karte-uv-index").innerHTML = `UV-Index:<br>${Math.round(aktuell.uvIndex)}`;
     document.getElementById("karte-wolkendecke").innerHTML = `Wolkendecke:<br>${Math.round(aktuell.cloudCover * 100)}%`;
-}    
+}
 
 function zeigeWetterIcon(zustand) {
     const iconMap = {
@@ -172,7 +179,7 @@ function initMap(lat, lon) {
     L.marker([lat, lon]).addTo(map)
         .bindPopup('Gewählter Ort')
         .openPopup();
-}  
+}
 
 function zeigeTageDaten(daten) {
     const container = document.getElementById("tage-container");
@@ -208,3 +215,46 @@ function zeigeStundenDaten(daten) {
         `;
     });
 }
+/*
+// Funktion, um die Slider-Daten anzuzeigen
+function zeigeStundenDaten(daten) {
+    const slidersContainer = document.getElementById("sliders-container");
+    slidersContainer.innerHTML = ""; // Vorherige Inhalte löschen
+
+    daten.hourly.data.slice(0, 24).forEach((stunde) => {
+        const temperatur = ((stunde.temperature - 32) * 5) / 9; // Umrechnung in Celsius
+        const prozent = ((temperatur + 30) / 80) * 100; // Prozentuale Höhe (80°C Range)
+
+        const sliderWrapper = document.createElement("div");
+        sliderWrapper.classList.add("slider-wrapper");
+
+        for (let i = 0; i < 80; i++) {
+            const step = document.createElement("div");
+            step.classList.add("slider-step");
+
+            // Aktivieren, wenn der aktuelle Step zur Temperatur gehört
+            if (i / 80 * 100 <= prozent) {
+                step.classList.add("active");
+            }
+
+            sliderWrapper.appendChild(step);
+        }
+
+        slidersContainer.appendChild(sliderWrapper);
+    });
+}
+
+// Beispiel-Daten abrufen und Funktion aufrufen
+async function ladeWetterDaten() {
+    const API_KEY = "dWL7n8jTc69tmrPmxxoNMfeaCUGJzKCR";
+    const lat = 52.52; // Beispiel: Berlin
+    const lon = 13.405;
+    const apiUrl = `https://api.pirateweather.net/forecast/${API_KEY}/${lat},${lon}?extend=hourly`;
+    const response = await fetch(apiUrl);
+    if (!response.ok) throw new Error("Fehler beim Abrufen der Wetterdaten.");
+    const daten = await response.json();
+    zeigeStundenDaten(daten);
+}
+
+// Daten laden
+ladeWetterDaten().catch((error) => console.error(error));*/
