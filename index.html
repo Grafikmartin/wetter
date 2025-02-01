@@ -40,98 +40,143 @@
             </button>
         </div>
     </header>
-    <section class="container">
-        <div class="logo"><img src="./assets/wetterfrosch.png" alt=""></div>
-        <h1>WetterFrosch 2.0</h1>
-        <div id="wetter-container">
-            <p id="status" class="laden">Gib einen Ort deiner Wahl an.</p>
-            <div class="row">
-                <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
-                <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+<section class="container">
 
+    <div class="logo"><img src="./assets/wetterfrosch.png" alt=""></div>
+    <h1>WetterFrosch 2.0</h1>
+    <div id="wetter-container">
+        <p id="status" class="laden">Gib einen Ort deiner Wahl an.</p>
+        <div class="row">
+            <input type="text" id="stadt-eingabe" placeholder="Stadt eingeben" />
+            <input type="text" id="plz-eingabe" placeholder="PLZ (optional)" />
+        </div>
+        <div class="row">
+            <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
+            <button id="suchen">Suchen</button>
+        </div>
+    </div>
+    <div id="aktuelle-daten">
+        <div id="temp-card">
+            <h2>Aktuelle Wetterdaten</h2>
+            <div>
+                <span id="temperatur"></span>
+                <span id="zusammenfassung"></span>
             </div>
-            <div class="row">
-                <input type="text" id="land-eingabe" placeholder="Land (optional, z. B. DE)" />
-                <button id="suchen">Suchen</button>
+            <div class="blob"></div>
+        </div>
+    </div>
+    <div class="wrapper">
+        <div class="inner" style="--quantity: 8;">
+            <div class="card" style="--index: 0;">
+                <div class="Wetterdaten" id="karte-gefuehlte-temperatur">Gefühlte Temperatur:<br> xx °C</div>
+            </div>
+            <div class="card" style="--index: 1;">
+                <div class="Wetterdaten" id="karte-luftfeuchtigkeit">Luftfeuchtigkeit:<br>xx%</div>
+            </div>
+            <div class="card" style="--index: 2;">
+                <div class="Wetterdaten" id="karte-luftdruck">Luftdruck: <br> xx hPa</div>
+            </div>
+            <div class="card" style="--index: 3;">
+                <div class="Wetterdaten" id="karte-windgeschwindigkeit">Windgeschwindigkeit:<br> xx m/s</div>
+            </div>
+            <div class="card" style="--index: 4;">
+                <div class="Wetterdaten" id="karte-boeen">Böen:<br> xx m/s</div>
+            </div>
+            <div class="card" style="--index: 5;">
+                <div class="Wetterdaten" id="karte-uv-index">UV-Index:<br> xx</div>
+            </div>
+            <div class="card" style="--index: 6;">
+                <div class="Wetterdaten" id="karte-wolkendecke">Wolkendecke:<br> xx%</div>
+            </div>
+            <div class="card" style="--index: 7;">
+                <div class="Wetterdaten" id="karte-sichtweite">Sichtweite:<br> xx km</div>
+            </div>
+           
+        </div>
+    </div>
+
+
+
+
+
+
+
+    <div id="map-container"> 
+        <div id="map" style="display: none;"></div>
+    </div>
+    <div id="grundlegende-info">
+        <h4 class="grundInfo">Grundlegende Informationen</h4>
+        <p id="koordinaten"></p>
+        <p id="ortszeit"></p>
+        <p id="zeitzone"></p>
+        <p id="hoehe"></p>
+    </div>
+    <div class="extrahintergrund" style="display: none;"> 
+        <div id="diagramm-container">
+            <h3>Die nächsten 24 Stunden:</h3>
+            <canvas id="temperaturChart"></canvas>
+            <canvas id="appTempChart" style="display: none;"></canvas>
+            <canvas id="niederschlagChart" style="display: none;"></canvas>
+            <canvas id="precipProbabilityChart" style="display: none;"></canvas>
+            <canvas id="windChart" style="display: none;"></canvas>
+            <canvas id="boeenChart" style="display: none;"></canvas>
+            <canvas id="humidityChart" style="display: none;"></canvas>
+            <canvas id="uvIndexChart" style="display: none;"></canvas>
+            <canvas id="pressureChart" style="display: none;"></canvas>
+            <canvas id="cloudCoverChart" style="display: none;"></canvas>
+            <canvas id="visibilityChart" style="display: none;"></canvas>
+            <div id="button-container">
+                <button id="tempButton">Temperatur</button>
+                <button id="appTempButton">gefühlte Temperatur</button>
+                <button id="regenButton">Niederschlagsintensität</button>
+                <button id="precipProbability">Regenwahrscheinlichkeit</button>
+                <button id="cloudCover">Wolkenbedeckung</button>
+                <button id="windButton">Wind</button>
+                <button id="boeenButton">Böen</button>
+                <button id="humidity">Luftfeuchtigkeit</button>
+                <button id="pressure">Luftdruck</button>
+                <button id="visibilityButton">Sichtweite</button>
+                 <!--<button id="UvIndexButton">UV-Index</button>-->
             </div>
         </div>
-        <div id="aktuelle-daten">
-            <div id="temp-card">
-                <h2>Aktuelle Wetterdaten</h2>
-                <div>
-                    <span id="temperatur"></span>
-                    <span id="zusammenfassung"></span>
-                </div>
-                <div class="blob"></div>
+    </div>
+    <div class="extrahintergrund" id="daily-extrahintergrund" style="display: none;">
+        <div id="daily-diagramm-container">
+            <h3>Die nächsten 7 Tage:</h3>
+            <canvas id="dailyTempChart"></canvas>
+            <canvas id="dailyAppTempChart" style="display: none;"></canvas>
+            <canvas id="dailyNiederschlagChart" style="display: none;"></canvas>
+            <canvas id="dailyPrecipProbabilityChart" style="display: none;"></canvas>
+            <canvas id="dailyWindChart" style="display: none;"></canvas>
+            <canvas id="dailyBoeenChart" style="display: none;"></canvas>
+            <canvas id="dailyHumidityChart" style="display: none;"></canvas>
+            <canvas id="dailyUvIndexChart" style="display: none;"></canvas>
+            <canvas id="dailyPressureChart" style="display: none;"></canvas>
+            <canvas id="dailyCloudCoverChart" style="display: none;"></canvas>
+            <canvas id="dailyVisibilityChart" style="display: none;"></canvas>
+            <div id="daily-button-container">
+                <button id="dailyTempButton">Temperatur</button>
+                <button id="dailyAppTempButton">gefühlte Temperatur</button>
+                <button id="dailyRegenButton">Niederschlagsintensität</button>
+                <button id="dailyPrecipProbability">Regenwahrscheinlichkeit</button>
+                <button id="dailyCloudCover">Wolkenbedeckung</button>
+                <button id="dailyWindButton">Wind</button>
+                <button id="dailyBoeenButton">Böen</button>
+                <button id="dailyHumidity">Luftfeuchtigkeit</button>
+                <!--<button id="dailyUvIndexButton">UV-Index</button>-->
+                <button id="dailyPressure">Luftdruck</button>
+                <button id="dailyVisibilityButton">Sichtweite</button>
             </div>
         </div>
-        <div class="wrapper">
-            <div class="inner" style="--quantity: 8;">
-                <div class="card" style="--index: 0;">
-                    <div class="Wetterdaten" id="karte-gefuehlte-temperatur">Gefühlte Temperatur:<br> xx °C</div>
-                </div>
-                <div class="card" style="--index: 1;">
-                    <div class="Wetterdaten" id="karte-luftfeuchtigkeit">Luftfeuchtigkeit:<br>xx%</div>
-                </div>
-                <div class="card" style="--index: 2;">
-                    <div class="Wetterdaten" id="karte-luftdruck">Luftdruck: <br> xx hPa</div>
-                </div>
-                <div class="card" style="--index: 3;">
-                    <div class="Wetterdaten" id="karte-windgeschwindigkeit">Windgeschwindigkeit:<br> xx m/s</div>
-                </div>
-                <div class="card" style="--index: 4;">
-                    <div class="Wetterdaten" id="karte-boeen">Böen:<br> xx m/s</div>
-                </div>
-                <div class="card" style="--index: 5;">
-                    <div class="Wetterdaten" id="karte-uv-index">UV-Index:<br> xx</div>
-                </div>
-                <div class="card" style="--index: 6;">
-                    <div class="Wetterdaten" id="karte-wolkendecke">Wolkendecke:<br> xx%</div>
-                </div>
-                <div class="card" style="--index: 7;">
-                    <div class="Wetterdaten" id="karte-sichtweite">Sichtweite:<br> xx km</div>
-                </div>
-               
-            </div>
-        </div>
-
-        <div id="map-container">
-
-            
-            <div id="map" style="display: none;"></div>
-        </div>
-        <div id="grundlegende-info">
-            <h2>Grundlegende Informationen</h2>
-            <p id="koordinaten"></p>
-            <p id="ortszeit"></p>
-            <p id="zeitzone"></p>
-            <p id="hoehe"></p>
-        </div>
-
-        <!--
-
--->
-
-        <div id="stunden-daten" class="hidden">
-            <h2>Stündliche Vorhersage</h2>
-            <div class="Temperatur-Stunden"></div>
-            <div class="Niederschlag-Stunden"></div>
-            <div class="Wind-Stunden"></div>
-            <button class="TemperaturC">Temperatur in C°</button>
-            <button class="Niederschlag-mm">Niederschlag in mm</button>
-            <button class="Wind-km/h">Wind in km/h</button>
-        </div>
-
-    </section>
+    </div>
     <footer class="footer">
         <p class="footer-text">WetterFrosch 2.0 - Dein Wetter, immer im Blick</p>
     </footer>
 
-    <script defer src="stundenwetter.js"></script>
-    <script defer src="script.js"></script>
+</section>
 
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
