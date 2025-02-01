@@ -45,8 +45,6 @@ html {
     scroll-behavior: smooth;
 }
 
-
-
 .top-bar {
     display: flex;
     justify-content: space-between;
@@ -135,27 +133,30 @@ h1 {
 input,
 button {
    
-    padding: 10px;
-    font-size: 12px;
+    padding: 8px;
+    font-size: 11px;
     border: 1px solid var(--button-border-color);
     border-radius: 20px;
     background-color: black;
     color: var(--text-color);
-    margin-bottom: 12px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 #stadt-eingabe {
-    width: 200px;
+    width: 140px;
+    border-radius: 15px 0px 0px 15px !important;    
 }
 
 #plz-eingabe {
-    width: 123px;
+    width: 66px;
+    border-radius: 0;
     background-color: black;
 }
 
 #land-eingabe {
-    width: 200px;
+    border-radius: 0px 15px 15px 0px !important;
+    width: 105px;
 }
 
 #suchen {
@@ -483,7 +484,6 @@ p {
     width: 100%;
 }
 
-/* Stile für das Diagramm-Container */
 #button-container button {
     border-radius: 0px;
     font-size: 11px;
